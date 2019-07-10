@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+    8.4.3:
+      container_name: haskell_UMA
+      build:
+        context: .
+        dockerfile: Dockerfile
+      stdin_open: true
+      tty: true
+      volumes:
+        - ./code:/home/mark/code
