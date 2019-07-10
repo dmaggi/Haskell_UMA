@@ -9,4 +9,4 @@ Also we need to create a specific folder that will be mounter in to the containe
 
 ## How to use it
 
-Because of the alias we made its just simple as typing `haskell` in our terminal and the container will start. Notice that the first time we use the container will take several minuts to build de image and start the container. Remember that all code you want to test must be on the folder we created on the 'Setting up' steps.
+Because of the alias we made its just simple as typing `haskell` in our terminal and the container will start. Notice that the first time we use the container will take several minutes to build de image and start the container. Remember that all code you want to test must be on the folder we created on the 'Setting up' steps.
