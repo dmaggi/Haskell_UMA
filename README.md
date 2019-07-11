@@ -4,7 +4,7 @@ Welcome to Haskell environment for "Estuctura de Datos" subject at the Málaga U
 
 ## Setting up
 
-Because we will use the `docker-compose.yml` file to deploy de container using the image uploaded to Docker Hub, we need first to download it
+Because we will use the `docker-compose.yml` file to deploy the container using the image uploaded to Docker Hub, we need first to download it
 
 `docker pull markspitz15/haskell:latest`
 
@@ -16,7 +16,7 @@ And remember to do:
 
  `source ~/.bashrc`
 
-Also we need to create a specific folder that will be mounter in to the container named *code*
+Also we need to create a specific folder that will be mounted in to the container named *code*
 
 `mkdir ./code`
 
