@@ -1,6 +1,6 @@
-# Haskell 8.4.3 enviroment with Docker
+# Haskell 8.4.3 environment with Docker
 
-Wellcome to Haskell enviroment for "Estuctura de Datos" subject at the Málaga University.
+Welcome to Haskell environment for "Estuctura de Datos" subject at the Málaga University.
 
 ## Setting up
 
@@ -24,4 +24,4 @@ Also we need to create a specific folder that will be mounter in to the containe
 
 Because of the alias we made it's just simple as typing `haskell` in our terminal and the container will start. Remember that all code you want to test must be on the folder we created on the 'Setting up' steps.
 
-On **Prelude** you will have first to *load* the file, then you can test your functions. In case of any change, simply modify it on your local machine with your favourite editor and *reload* on *Prelude* terminal.
+On **Prelude** you will have first to *load* the file, then you can test your functions. In case of any change, simply modify it on your local machine with your favorite editor and *reload* on *Prelude* terminal.
