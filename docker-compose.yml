@@ -1,6 +1,7 @@
 version: "3.1"
 services:
     8.4.3:
+      image: markspitz15/haskell:latest
       container_name: haskell_UMA
       build:
         context: .
