@@ -9,4 +9,4 @@ services:
       stdin_open: true
       tty: true
       volumes:
-        - ./code:/home/mark/code
+        - ./code:/home/kiwi/code

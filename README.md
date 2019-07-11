@@ -10,7 +10,7 @@ Because we will use the `docker-compose.yml` file to deploy de container using t
 
 To make it easy we will create an alias to quick deploy container and start testing our code. To do that, simply add to your `~/.bashrc` file the next line:
 
-`alias haskell="docker-compose -f PATH_FILE/docker-compose.yml up -d; docker attach haskell_UMA`
+`alias haskell="docker-compose -f PATH_FILE/docker-compose.yml up -d; docker attach haskell_UMA"`
 
 And remember to do:
 
