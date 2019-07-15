@@ -146,6 +146,34 @@ potencia x n | n == 1 = x
 --b)
 esPar :: Integer -> Bool
 esPar x = x `mod` 2 == 0
-potencia' :: Integer -> Integer -> Integer
-potencia' x n | esPar x == True = error "no entienda"-- potencia ( (potencia x (n/2)) 2)
-              | otherwise = error "nada que hacer " -- x * potencia ( potencia x (n/2) 2)
+--potencia' :: Integer -> Integer -> Integer
+--potencia' x n | esPar x == True = k * k
+--              | otherwise = x * k2 * k2
+--    where
+--        k = potencia' b*(din n 2)
+--        k2 = potencia' b*(div (n-1) 2)
+
+---------------
+--Ejercicio 15
+---------------
+
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+
+---------------
+--Ejercicio 16
+---------------
+
+mediana Ord a => (a,a,a,a,a) -> a
+mediana (x,y,z,t,u) | x > z = mediana (z,y,x,t,u)
+                    | y > z = mediana (x,z,y,t,u)
+                    | z > t = mediana (x,y,t,z,u)
+                    | z > u = mediana (x,y,u,t,z)
+                    | otherwise = 
+
+---------------
+--Ejercicio 17
+---------------
+
+
