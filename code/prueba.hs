@@ -20,3 +20,6 @@ esPrimo x = length (divisores x) == 2
 
 primoHasta :: Integer -> [Integer]
 primoHasta x = [y | y <- [2..x], esPrimo y]
+
+primoHasta' :: Integer -> [Integer]
+primoHasta' x = filter (esPrimo) [1..x]
