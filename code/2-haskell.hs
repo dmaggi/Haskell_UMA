@@ -89,6 +89,102 @@ primoHasta n = [x | x <- [1..n], esPrimo x]
 -- primoHasta' n = [x | x <-[1..n], esPrimo x]
 
 ---------------
+--Ejercicio 9
+---------------
+
+-- a)
+pares :: Integer -> [(Integer,Integer)]
+pares n = [(x,y) | x <- [2..n], y <- [x..n], esPrimo x, esPrimo y, x+y == n]
+
+-- b)
+infixl 1 ==>>
+(==>>) :: Bool -> Bool -> Bool
+a ==>> b = (not a) || b
+
+golbach :: Integer -> Bool
+golbach n = n > 2 && even n ==>> length (pares n) > 0
+
+-- c)
+golbachHasta :: Integer -> Bool
+-- golbachHasta n = and (map (golbach) [1..n])
+golbachHasta n = and (map (\x -> golbach x) [1..n])
+-- golbachHasta n = and [golbach x | x <- [3..n]] otra forma
+-- golbachHasta n = foldl (\x y -> x && golbach y) True [1..n]
+-- golbachHasta n = (length (filter (golbach) [1..n])) == n
+
+---------------
+--Ejercicio 10
+---------------
+
+-- filter (\k -> mod k 4 == 0) [1..100] Me da de la lista todos los que son divisibles por 4
+-- foldl (\x y -> [y]++x) [] [3,2,1,0] Le damos la vuelta a la lista
+
+-- a).
+--esPerfecto :: Integer -> Bool
+--esPerfecto n = sum [x | x <- [1..n], divisoresHasta n] == n
+--esPerfecto foldr (+) 0 [x | x <- [1..n], divisoresHasta x] == n
+
+-- b)
+--perfectosMenoresQue :: Integer -> [Integer]
+--perfectosMenoresQue n = [x | x <- [1..n], esPerfecto x]
+
+---------------
+--Ejercicio 11
+---------------
+
+-- a)
+take' :: Int -> [a] -> [a]
+take' n xs = [x | (p,x) <- zip [0..n-1] xs ]
+
+--b)
+drop' :: Int -> [a] -> [a]
+drop' n xs = [x | (p,x) <- zip [0.. length xs-1] xs, p>=n]
+---------------
+--Ejercicio 12
+---------------
+
+-- a)
+concat :: [[a]] -> [a]
+--concat xs = foldr (++) [] xs
+concat xs = [c | y <- xs, c <- y]
+
+
+
+---------------
+--Ejercicio 13
+---------------
+
+-- Me dice si una funcion esta ordenada 
+
+---------------
+--Ejercicio 14
+---------------
+
+-- a)
+--inserta :: Ord a => a -> [a] -> [a]
+--inserta x xs = (takeWhile (<x) xs) ++ [x] ++ (dropWhile (<x) xs)
+
+-- b)
+inserta n [] = [n]
+inserta n (x:xs) | n <= x = (n:x:xs)
+                 | otherwise = x:(inserta n xs)
+
+
+-- e)
+ordena :: Ord a => [a] -> [a]
+ordena xs = foldr (inserta) [] xs
+
+---------------
+--Ejercicio 15
+---------------
+
+-- a)
+iterate' :: (a -> a) -> a -> [a]
+iterate' f a = a : iterate f (f a)
+
+geometria
+
+---------------
 --Ejercicio 1
 ---------------
 
@@ -109,52 +205,7 @@ primoHasta n = [x | x <- [1..n], esPrimo x]
 -- a)
 
 
----------------
---Ejercicio 1
----------------
-
--- a)
 
 
----------------
---Ejercicio 1
----------------
-
--- a)
-
-
----------------
---Ejercicio 1
----------------
-
--- a)
-
-
----------------
---Ejercicio 1
----------------
-
--- a)
-
-
----------------
---Ejercicio 1
----------------
-
--- a)
-
-
----------------
---Ejercicio 1
----------------
-
--- a)
-
-
----------------
---Ejercicio 1
----------------
-
--- a)
 
 
