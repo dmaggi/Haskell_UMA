@@ -1,3 +1,4 @@
+import Data.List
 ---------------
 --Ejercicio 2
 ---------------
@@ -182,7 +183,119 @@ ordena xs = foldr (inserta) [] xs
 iterate' :: (a -> a) -> a -> [a]
 iterate' f a = a : iterate f (f a)
 
-geometria
+-- b)
+geometrica :: Integer -> Integer -> [Integer]
+geometrica ini razon = iterate (*razon) ini
+
+-- c)
+multiplosDe ini = iterate (+ini) 0
+
+-- d)
+potenciasDe ini = iterate (*ini) 1
+
+---------------
+--Ejercicio 16
+---------------
+
+-- a)
+--En teoria es hacacer un tail del anterior
+
+-- b)
+-- primeroComun :: Ord a => [a] -> [a] -> a
+-- primeroComun (x:xs) (y:ys)
+--        | x < y primeroComun xs (y:ys)
+--        | x > y primeroComun (x:xs) ys
+--        | otherwise x
+
+-- c)
+-- mcm :: Integer -> Integer -> Integer
+-- mcm x y = primeroComun (multiplosDe x) (multiplosDe y)
+
+---------------
+--Ejercicio 17
+---------------
+
+-- a)
+primeroComunDeTres :: Ord a => [a] -> [a] -> [a] -> a
+primeroComunDeTres (x:xs) (y:ys) (z:zs)
+        | x > y     = primeroComunDeTres (x:xs) ys (z:zs)
+        | y > z     = primeroComunDeTres (x:xs) (y:ys) zs
+        | otherwise = primeroComunDeTres xs ys zs
+
+---------------
+--Ejercicio 18
+---------------
+
+-- a)
+factPrimos :: Integer -> [Integer]
+factPrimos x = fp x 2
+        where
+            fp x d
+                | x' < d    = [x]
+                | r == 0    = d : fp x' d
+                | otherwise = fp x (d+1)
+                    where (x',r) = divMod x d --cociente y resto
+
+---------------
+--Ejercicio 19
+---------------
+
+-- a)
+mezcla :: [Integer] -> [Integer] -> [Integer]
+mezcla l [] = l
+mezcla [] l = l
+mezcla (x:xs) (y:ys)
+            | x == y = x : mezcla xs ys
+            | x < y  = x : (mezcla xs (y:ys))
+            | x > y  = y : (mezcla (x:xs) ys) 
+mcm :: Integer -> Integer -> Integer
+mcm x y = foldr (*) 1 comunes
+    where
+        lx = factPrimos x
+        ly = factPrimos y
+        comunes = mezcla lx ly
+
+
+---------------
+--Ejercicio 21
+---------------
+
+-- a)
+nub' :: Eq a => [a] -> [a]
+nub' [] = []
+nub' (x:xs) = x : nub' (filter (/=x) xs)
+--                     ([y | y <- xs, y /= x])  Otra manera
+
+
+-- d)
+all' :: (a -> Bool) -> [a] -> Bool
+all' f l = foldl (\x y -> x && f y ) True l
+--all' f l = length (filter (f) l) = length l
+--all' f l = nul [x | x <- l, not f x]
+--all' f l = and (map (f) l)
+
+
+---------------
+--Ejercicio 22
+---------------
+{-
+-- a)
+binarios :: Integer -> [Integer]
+binarios 0 = [[]]
+binarios n = ['0' : x | x <- xs] ++ ['1' : x | x <- xs]
+    where
+        xs = binarios (n-1)
+-}
+
+---------------
+--Ejercicio 23
+---------------
+
+-- a)
+varRep :: Integer -> [a] -> [[a]]
+varRep 0 l = [[]]
+varRep n l = [x ++ [y] | y <- l, x <-varRep (n-1) l]
+--         = [y:x | y<-l, x <- vvarRep (n-1) l]
 
 ---------------
 --Ejercicio 1
@@ -204,6 +317,40 @@ geometria
 
 -- a)
 
+
+---------------
+--Ejercicio 1
+---------------
+
+-- a)
+
+
+---------------
+--Ejercicio 1
+---------------
+
+-- a)
+
+
+---------------
+--Ejercicio 1
+---------------
+
+-- a)
+
+
+---------------
+--Ejercicio 1
+---------------
+
+-- a)
+
+
+---------------
+--Ejercicio 1
+---------------
+
+-- a)
 
 
 
