@@ -298,31 +298,78 @@ varRep n l = [x ++ [y] | y <- l, x <-varRep (n-1) l]
 --         = [y:x | y<-l, x <- vvarRep (n-1) l]
 
 ---------------
---Ejercicio 1
+--Ejercicio 24
 ---------------
 
 -- a)
+--var :: Eq a => Integer -> [a] -> [[a]]
+--var 0 _ = [[]]
+--var n l = [ x:y | y <- (var(n-1) l), x <- l, x notElem y ]
 
 
 ---------------
---Ejercicio 1
----------------
-
--- a)
-
-
----------------
---Ejercicio 1
+--Ejercicio 25
 ---------------
 
 -- a)
+intercala :: a -> [a] -> [[a]]
+--intercala e []  = [[e]] --Este no se usa, se puede borrar
+intercala e l   = [(take i l) ++ [e] ++ (drop i l) | i <- [0..(length l)]]
+--    where
+--        ins e l i = (take i l) ++ [e] ++ (drop i l)
 
+-- Mis que antes solo que con un contador
+--intercala' e l  = intercalaaux e l i
+--        where
+--            intercalaaux e l ((length l)+1) = []
+--            intercalaaux e l i              = [take i l ++ [e] ++ drop i l]:intercalaaux e l (i+1)
 
+-- b)
+--perm :: [a] -> [[a]]
+--perm [] = [[]]
+--perm l = foldr (\x y -> concat [(intercala x z) | z <- y] ) [[]] l
+--perm (x:xs) = concat [(intercala x ys) | ys <- perm xs] -- otra forma
 ---------------
---Ejercicio 1
+--Ejercicio 26
 ---------------
 
 -- a)
+--comb :: Integer -> [a] -> [[a]]
+--comb n l | n == length l = [l]
+--         | n > length l = error "hijoeputa"
+--         | otherwise =
+--            [ (take (i-1) z) ++ (drop i z) | z <- comb (n+1) l, i <- [1..(length z)] ]
+--Otra fora
+--comb 0 _      = [[]]
+--comb _ []     = []
+--comb n (x:xs) = (comb n xs) ++ [x : ys | ys <- comb (n-1) xs]
+
+---------------
+--Ejercicio 27
+---------------
+
+-- a)
+esPrefijoDe :: Eq a => [a] -> [a] -> Bool
+esPrefijoDe [] _ = True
+esPrefijoDe (x:xs) (y:ys) = x==y && esPrefijoDe xs ys
+
+-- b)
+--busquedas :: String -> String -> [Integer]
+--busquedas x [] = []
+--busquedas [] x = []
+--busquedas sub fuente = busquedaAux sub fuente 0
+--    where
+--        busquedaAux _ [] _ = []
+--        busquedaAux sub fuente i | esPrefijoDe sub fuente = i : busquedaAux sub (tail fuente) i+1
+                                                         -- i : busquedaAux sub (drop (lenght sub) fuente) i+(lenght.sub)
+--                                 | otherwise = busquedaAux sub (tail fuente) (i+1)
+
+-- c)
+distancia :: String -> String -> Integer
+distancia [] x = length x
+distancia y [] = length y
+distancia (x:xs) (y:ys) | x \= y    = 1 + distancia xs ys
+                        | otherwise = distancia xs ys
 
 
 ---------------
