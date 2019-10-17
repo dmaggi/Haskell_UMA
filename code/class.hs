@@ -1,4 +1,5 @@
 import Test.QuickCheck
+-- :set +s
 
 --------------------------------
 --------------------------------
@@ -97,3 +98,101 @@ terna x y | x > y = (x*x - y*y, 2*x*y, x*x+y*y)
 p_ternas :: Integer -> Integer -> Property
 p_ternas x y = x>0 && y>0 && x>y ==> esTerna a b c
     where (a,b,c) = terna x y
+
+
+
+--------------------------------
+--------------------------------
+-- 15/10/2019
+--------------------------------
+--------------------------------
+
+cerosUnos :: Integral a => a -> (Integer,Integer)
+cerosUnos n
+    | n == 0 = (1,0)
+    | n == 1 = (0,1)
+    | r == 0 = (sc+1,sv)
+    | r == 1 = (sc,sv+1)
+        where (c,r) = divMod n 10 --Esto me saca de: 100100 - (10010,0)
+              (sc,sv) = cerosUnos c
+
+
+-------- RELACION EJERCICIOS EXTRA ----------------
+
+
+--Ejercicio [esPrimo]
+
+esPrimo n
+    | n <= 0 = error "Error numero negativo o cero"
+    | n == 1 = False
+    | otherwise = esPrimo' 2
+        where
+            esPrimo' x
+                | x == n = True
+                | otherwise = mod n x /= 0 && esPrimo' (x+1)
+
+--Ejercicio [libreDeCuadrados]
+
+libreDeCuadrados :: Integer -> Bool
+libreDeCuadrados n
+    | n <= 0 = error "Error numero negativo o cero"
+    | n == 1 = True
+    | otherwise = libreDeCuadrados' 2
+        where
+            libreDeCuadrados' x
+                | x * x > n = True
+                | otherwise = mod n (x*x) /= 0 && libreDeCuadrados' (x+1)
+
+--Ejercicio [raizEntera]
+
+esRaizEntera:: Integer -> Integer -> Bool
+esRaizEntera r n = r*r <= n && (r+1)*(r+1)>n
+
+raizEntera :: Integer -> Integer
+-- raizEntera x = truncate (sqrt (fromIntegral x)) --Esto es usando las librerias
+raizEntera x
+    | x < 0 = error "Error numero negativo o cero"
+    | x == 1 = 0
+    | otherwise = raizEntera' 1
+        where
+            raizEntera' r
+                | esRaizEntera r x = r
+                | otherwise = raizEntera' (r+1)
+
+raizEnteraRapida :: Integer -> Integer
+raizEnteraRapida n
+    | n <= 0 = error "Error numero negativo o cero"
+    | n == 1 = 1
+    | otherwise = raizEnteraRapida' 0 n
+            where
+                raizEnteraRapida' x y
+                    | esRaizEntera z n = z
+                    | z * z < n = raizEnteraRapida' z y
+                    | otherwise = raizEnteraRapida' x z
+                        where z = div (x+y) 2
+
+
+-- Ejercicio [harshad]
+
+sumaDigitos :: Integer -> Integer
+sumaDigitos n
+    | n < 10 = n
+    | otherwise = r + sumaDigitos c
+        where (c,r) = divMod n 10
+
+-- Extra un ejercicio que haga sumarDigitos hasta que se quede solo con 1 numero
+
+sumaDigitosRec :: Integer -> Integer
+sumaDigitosRec n
+    | n < 10 = n
+    | otherwise = sumaDigitosRec (sumaDigitos n)
+
+simpatico :: Integer -> Bool
+simpatico n = sumaDigitosRec n == 1
+
+harshad :: Integer -> Bool
+harshad x = mod x (sumaDigitos x) == 0
+
+harshadMultiple :: Integer -> Bool
+harshadMultiple n = harshad n && harshad (div n (sumaDigitos n))
+--Ejemplo de numero: 6804
