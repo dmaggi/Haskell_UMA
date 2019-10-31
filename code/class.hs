@@ -196,3 +196,66 @@ harshad x = mod x (sumaDigitos x) == 0
 harshadMultiple :: Integer -> Bool
 harshadMultiple n = harshad n && harshad (div n (sumaDigitos n))
 --Ejemplo de numero: 6804
+
+
+
+
+--------------------------------
+--------------------------------
+-- 30/10/2019
+--------------------------------
+--------------------------------
+
+
+-- length (takeWhile (=='0') (reverse (show (factorial 10000))))
+
+-- Usamos la composicion de funciones para quitarnos los parentesis y que sea mas claro.
+-- (length .takeWhile (=='0'). reverse. show. factorial) 10000
+
+-- Podemos quitar el parentesis mas grande con el '$' que es un operador que tiene una prioridad muy baja, entonces necesita primero saber lo que hay a su derecha y a su izquiera. Su definicion es: --> f $ x = f x
+-- length .takeWhile (=='0'). reverse. show. factorial $ 10000
+
+-- (`div`2) . factorial $ 100
+-- (flip div 2) . factorial $ 100
+
+
+-- Si no fuera una cosa estructural, habria que hacerla a mano, pero como no es el caso, usamos
+data Direction = North | South | East | West deriving (Show, Eq, Ord)
+
+-- instance Eq Direction where 
+--     North == North = True
+--     South == South = True
+--     East == East = True
+--     West == West = True
+--     _ == _ = False
+
+-- instance Show Direction where 
+--     show North = "North"
+--     show South = "South"
+--     show East = "East"
+--     show West = "West"
+
+gira :: Direction -> Direction
+gira North = East
+gira South = West
+gira East = South
+gita West = North
+
+
+--Ejemplo de ejecucion para la definicion de tempetarura (Tema 2 diapo 53)
+
+-- sum . map (\Celsius c) -> . map toCelcius $ [Celsius 25, Fahrenheit 35, Celsius 4]
+-- sum . map (\Celsius c) -> . map toCelcius . filter (not.frozen) $ [Celsius 25, Fahrenheit 35, Celsius 4]
+
+
+
+--Nos definimos nuestra propia funcion para 
+
+-- (=~) :: Double -> Docuble -> Double
+-- x =~ y = abs (x-y) < 1/100000
+
+-- instance Eq Degrees where
+--     t == t' = f =~ f'
+--         where 
+--             Fahrenheit f = toFahrenheit t
+--             Fahrenheit f' = f = toFahrenheit t
