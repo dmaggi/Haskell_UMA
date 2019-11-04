@@ -259,3 +259,22 @@ gita West = North
 --         where 
 --             Fahrenheit f = toFahrenheit t
 --             Fahrenheit f' = f = toFahrenheit t
+
+
+--------------------------------
+--------------------------------
+-- 04/11/2019
+--------------------------------
+--------------------------------
+
+-- Tipo Abstracto de Datos (TAD)
+
+-- Para usar las estructuras:
+--  Supongamos que estamos en: DataStructures/Stack/
+--  e intentamos cargar ":l StackAxiomas.sh" NO FUNCIONA, pues tenemos que definirle el directorio padre que es DataStrucure
+--  por tanto tenemos que hacer previamente: "set: -i ../.." donde le estamos indicando que lo mire desde el directorio padre DataStructure
+--  Ahora ya si podemos cargarlo.
+
+-- Movida del foldr
+--  Se puede definir de otra manera
+--  sum xs = foldr (+) o xs ==> sum = (+) o
