@@ -89,7 +89,7 @@ funciones de bolsas:
 --------------------------------------------------------
 -- devuelve una bolsa vacía
 empty :: Bag a
-empty = undefined
+empty = Empty
 
 -- comprueba si una bolsa está vacía
 isEmpty :: Bag a -> Bool
