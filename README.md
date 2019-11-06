@@ -1,4 +1,4 @@
-# Haskell 8.4.3 environment with Docker
+# Haskell 8.6.5 environment with Docker
 
 Welcome to Haskell environment for "Estuctura de Datos" subject at the Málaga University.
 
