@@ -278,3 +278,12 @@ gita West = North
 -- Movida del foldr
 --  Se puede definir de otra manera
 --  sum xs = foldr (+) o xs ==> sum = (+) o
+
+--------------------------------
+--------------------------------
+-- 06/11/2019
+--------------------------------
+--------------------------------
+
+-- Creamos carpeta DataStructures/Set y completamos el archivo SortedLinearSet.hs
+-- Creamos carpeta DataStructures/Bag y completamos el archivo SortedLinearBag.hs
