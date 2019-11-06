@@ -309,3 +309,6 @@ foldBag f z (Node x ox s) = f x ox (foldBag f z s)
 
 keys :: Ord a => Bag a -> [a]
 keys bag = foldBag (\e oe s -> e:s) [] bag
+
+
+bagToList bag = foldBag (\e oe s -> (take oe (repeat e)) : s ) [] bag
