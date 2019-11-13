@@ -170,7 +170,7 @@ mediana (x,y,z,t,u) | x > z = mediana (z,y,x,t,u)
                     | y > z = mediana (x,z,y,t,u)
                     | z > t = mediana (x,y,t,z,u)
                     | z > u = mediana (x,y,u,t,z)
-                    | otherwise = 
+                    | otherwise = z
 
 ---------------
 --Ejercicio 17
